@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
+
 import nonthread_server_web.common.MessageUtils;
 
 public class Server implements Runnable {
@@ -19,17 +20,14 @@ public class Server implements Runnable {
         System.out.printf("Server Starting\n");
         while (keepProcessing) {
             try {
-            System.out.printf("accepting client\n");
-            Socket socket = serverSocket.accept();
-            System.out.printf("got client\n");
-            process(socket);
-            // Code cũ:
-                // handle(e);
-            //---Code thêm mới---
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+                System.out.printf("accepting client\n");
+                Socket socket = serverSocket.accept();
+                System.out.printf("got client\n");
+                process(socket);
+
+            } catch (Exception e) {
+                handle(e);
             }
-            //---Code thêm mới---
         }
     }
 
